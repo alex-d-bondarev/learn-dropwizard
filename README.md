@@ -24,8 +24,14 @@ To see your applications health enter url `http://localhost:8081/healthcheck`
 
 Endpoints
 ---
-####1. Hello World
+#### Hello World
 ##### Default request
 * http://localhost:8080/hello-world
 ##### Parameterized request
-* http://localhost:8080/hello-world?name=_Your Parameter_
+* http://localhost:8080/hello-world?name=__Your Parameter__
+
+#### Other URLs
+All other non implemented endpoints will throw custom 404 error:
+* code = 404
+* message = Custom page not found error
+
