@@ -1,5 +1,7 @@
 package com.learn.dropwizard;
 
+import com.learn.dropwizard.health.HelloHealthCheck;
+import com.learn.dropwizard.resources.HelloWorldResource;
 import io.dropwizard.Application;
 import io.dropwizard.setup.Bootstrap;
 import io.dropwizard.setup.Environment;
@@ -23,7 +25,17 @@ public class LearnDWApplication extends Application<LearnDWConfiguration> {
     @Override
     public void run(final LearnDWConfiguration configuration,
                     final Environment environment) {
-        // TODO: implement application
+
+        final HelloWorldResource resource = new HelloWorldResource(
+                configuration.getTemplate(),
+                configuration.getDefaultName()
+        );
+
+        final HelloHealthCheck healthCheck =
+                new HelloHealthCheck(configuration.getTemplate());
+
+        environment.healthChecks().register("template", healthCheck);
+        environment.jersey().register(resource);
     }
 
 }

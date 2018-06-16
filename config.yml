@@ -2,3 +2,6 @@ logging:
   level: INFO
   loggers:
     com.learn.dropwizard: DEBUG
+
+template: Hello, %s!
+defaultName: Stranger
