@@ -3,6 +3,8 @@ package com.learn.dropwizard;
 import com.learn.dropwizard.health.HelloHealthCheck;
 import com.learn.dropwizard.resources.HelloWorldResource;
 import com.learn.dropwizard.resources.Custom404Resource;
+import com.learn.dropwizard.resources.SummingResource;
+import com.sun.tools.doclets.internal.toolkit.ProfileSummaryWriter;
 import io.dropwizard.Application;
 import io.dropwizard.setup.Bootstrap;
 import io.dropwizard.setup.Environment;
@@ -28,6 +30,7 @@ public class LearnDWApplication extends Application<LearnDWConfiguration> {
                     final Environment environment) {
 
         final Custom404Resource custom404 = new Custom404Resource();
+        final SummingResource summing = new SummingResource();
         final HelloWorldResource resource = new HelloWorldResource(
                 configuration.getTemplate(),
                 configuration.getDefaultName()
@@ -37,8 +40,9 @@ public class LearnDWApplication extends Application<LearnDWConfiguration> {
                 new HelloHealthCheck(configuration.getTemplate());
 
         environment.healthChecks().register("template", healthCheck);
-        environment.jersey().register(resource);
         environment.jersey().register(custom404);
+        environment.jersey().register(resource);
+        environment.jersey().register(summing);
     }
 
 }

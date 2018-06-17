@@ -14,7 +14,6 @@ import java.util.Optional;
 
 @Path("/hello-world")
 @Produces(MediaType.APPLICATION_JSON)
-
 public class HelloWorldResource {
     private final String template;
     private final String defaultName;

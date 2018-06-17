@@ -10,7 +10,6 @@ import javax.ws.rs.core.MediaType;
 
 @Path("/")
 @Produces(MediaType.APPLICATION_JSON)
-
 public class Custom404Resource {
 
     @GET

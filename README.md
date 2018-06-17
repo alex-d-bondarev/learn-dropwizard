@@ -17,6 +17,13 @@ How to start the LearnDW application from IDE
 1. Run or debug from IDE
 1. Reference: https://blog.indrek.io/articles/running-a-dropwizard-application-in-intellij-eclipse-and-netbeans/
 
+How to run in Docker
+---
+
+1. Download Docker from https://www.docker.com/get-docker
+1. Install Docker
+
+
 Health Check
 ---
 
@@ -29,6 +36,13 @@ Endpoints
 * http://localhost:8080/hello-world
 ##### Parameterized request
 * http://localhost:8080/hello-world?name=__Your Parameter__
+
+Example: http://localhost:8080/hello-world?name=Jim
+
+#### Sum numbers
+* http://localhost:8080/sum/__First Number__/and/__Second Number__
+
+Example: http://localhost:8080/sum/2/and/5
 
 #### Other URLs
 All other non implemented endpoints will throw custom 404 error:
