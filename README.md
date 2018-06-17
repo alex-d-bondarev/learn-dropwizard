@@ -22,6 +22,8 @@ How to run in Docker
 
 1. Download Docker from https://www.docker.com/get-docker
 1. Install Docker
+1. Run `docker-compose up` to run LearnDW in Docker
+1. Click `^C` to stop LearnDW in Docker
 
 
 Health Check

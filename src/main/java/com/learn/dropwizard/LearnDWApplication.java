@@ -4,7 +4,6 @@ import com.learn.dropwizard.health.HelloHealthCheck;
 import com.learn.dropwizard.resources.HelloWorldResource;
 import com.learn.dropwizard.resources.Custom404Resource;
 import com.learn.dropwizard.resources.SummingResource;
-import com.sun.tools.doclets.internal.toolkit.ProfileSummaryWriter;
 import io.dropwizard.Application;
 import io.dropwizard.setup.Bootstrap;
 import io.dropwizard.setup.Environment;

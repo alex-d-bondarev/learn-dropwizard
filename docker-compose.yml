@@ -1,0 +1,21 @@
+version: '3.3'
+services:
+  backend-web:
+    image: maven:3.3.9-jdk-8
+    volumes:
+      - ./:/usr/src/app
+      - ~/.m2:/root/.m2
+    ports:
+      - "8080"
+      - "8081"
+    working_dir: /usr/src/app
+    entrypoint: >
+      bash -c "mvn clean install &&
+      java -jar /usr/src/app/target/com-learn-dropwizard-1.0-SNAPSHOT.jar server config.yml"
+    healthcheck:
+      test: curl --fail --location http://localhost:8081/healthcheck
+      interval: 60s
+      timeout: 10s
+      retries: 20
+
+# Reference: https://github.com/saurabh-86/dropwizard-basic/blob/master/docker-compose.yml
