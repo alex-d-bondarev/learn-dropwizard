@@ -1,6 +1,7 @@
 version: '3.3'
 services:
   backend-web:
+    container_name: learndDW
     image: maven:3.3.9-jdk-8
     volumes:
       - ./:/usr/src/app
@@ -17,5 +18,20 @@ services:
       interval: 60s
       timeout: 10s
       retries: 20
+    deploy:
+      resources:
+        limits:
+          cpus: '0.30'
+          memory: 100M
+        reservations:
+          cpus: '0.01'
+          memory: 10M
+      restart_policy:
+        condition: on-failure
+        delay: 10s
+        max_attempts: 5
+        window: 30s
 
-# Reference: https://github.com/saurabh-86/dropwizard-basic/blob/master/docker-compose.yml
+# References:
+# https://github.com/saurabh-86/dropwizard-basic/blob/master/docker-compose.yml
+# https://docs.docker.com/compose/overview/
