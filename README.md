@@ -3,9 +3,9 @@
 How to start the LearnDW application from terminal
 ---
 
-1. Run `mvn clean install` to build your application
+1. Run `mvn clean install` to build application
 1. Start application with `java -jar target/com-learn-dropwizard-1.0-SNAPSHOT.jar server config.yml`
-1. To check that your application is running enter url `http://localhost:8080`
+1. To check that application is running navigate to url `http://localhost:8080`
 
 How to start the LearnDW application from IDE
 ---
@@ -17,7 +17,17 @@ How to start the LearnDW application from IDE
 1. Run or debug from IDE
 1. Reference: https://blog.indrek.io/articles/running-a-dropwizard-application-in-intellij-eclipse-and-netbeans/
 
-How to run in Docker
+How to run via Dockerfile
+---
+
+1. Run `mvn clean install` to build application
+1. Build image: `docker image build -t learn-drop-wizard .`
+1. Run image `docker container run -p 8080:8080 -d learn-drop-wizard`
+1. To check that application is running navigate to url `http://localhost:8080`
+1. To stop running image `docker stop $(docker ps -a -q)`
+
+
+How to run via docker-compose
 ---
 
 1. Download Docker from https://www.docker.com/get-docker
