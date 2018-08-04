@@ -25,7 +25,7 @@
 1. Install Docker
 1. Run `mvn clean install` to build application
 1. Build image: `docker image build -t learn-drop-wizard .`
-1. Run image `docker container run -p 8080:8080 -d learn-drop-wizard`
+1. Run image `docker container run -p 8080:8080 -p 8081:8081 -d learn-drop-wizard`
 1. To check that application is running navigate to url `http://localhost:8080`
 1. To stop running image `docker stop $(docker ps -a -q)`
 
@@ -48,12 +48,12 @@ To see your applications health enter url `http://localhost:8081/healthcheck`
 ###### Default request
 * http://localhost:8080/hello-world
 ###### Parameterized request
-* http://localhost:8080/hello-world?name=__Your Parameter__
+* http://localhost:8080/hello-world?name=<Your Parameter>
 
 Example: http://localhost:8080/hello-world?name=Jim
 
 ##### Sum numbers
-* http://localhost:8080/sum/__First Number__/and/__Second Number__
+* http://localhost:8080/sum/<First Number>/and/<Second Number>
 
 Example: http://localhost:8080/sum/2/and/5
 
