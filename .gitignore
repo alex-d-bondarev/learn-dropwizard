@@ -1,5 +1,5 @@
 # Created by .ignore support plugin (hsz.mobi)
 /.idea/
-/learn-drop-wizard.iml
+/*.iml
 /dependency-reduced-pom.xml
 /target/
