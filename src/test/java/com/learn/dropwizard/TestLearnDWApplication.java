@@ -7,6 +7,6 @@ public class TestLearnDWApplication {
     @Test
     public void testApplicationName(){
         LearnDWApplication app = new LearnDWApplication();
-        Assert.assertEquals(app.getName(), "LearnDW");
+        Assert.assertEquals("LearnDW", app.getName());
     }
 }
