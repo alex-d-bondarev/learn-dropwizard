@@ -12,7 +12,7 @@
 
 #### How to start the LearnDW application from IDE
 
-1. Add new configuration
+1. Add new configuration as "Application"
 1. Set Main class = LearnDWApplication
 1. Set Program Arguments = server config.yml
 1. Save configuration
@@ -48,14 +48,22 @@ To see your applications health enter url `http://localhost:8081/healthcheck`
 ###### Default request
 * http://localhost:8080/hello-world
 ###### Parameterized request
-* http://localhost:8080/hello-world?name=<Your Parameter>
+* http://localhost:8080/hello-world?name=\<Your Parameter>
 
 Example: http://localhost:8080/hello-world?name=Jim
 
 ##### Sum numbers
-* http://localhost:8080/sum/<First Number>/and/<Second Number>
+* http://localhost:8080/sum/\<First Number>/and/\<Second Number>
 
 Example: http://localhost:8080/sum/2/and/5
+
+##### Wait milliseconds
+###### Default request
+* http://localhost:8080/wait
+###### Parameterized request
+* http://localhost:8080/wait?timeout=\<Milliseconds to wait>
+
+Example: http://localhost:8080/wait?timeout=500
 
 ##### Other URLs
 All other non implemented endpoints will throw custom 404 error:

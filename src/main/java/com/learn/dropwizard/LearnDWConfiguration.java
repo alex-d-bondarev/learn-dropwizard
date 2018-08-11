@@ -12,6 +12,9 @@ public class LearnDWConfiguration extends Configuration {
     @NotEmpty
     private String defaultName = "Stranger";
 
+    @NotEmpty
+    private String defaultWaitTimeout = "100";
+
     @JsonProperty
     public String getTemplate() {
         return template;
@@ -30,5 +33,15 @@ public class LearnDWConfiguration extends Configuration {
     @JsonProperty
     public void setDefaultName(String name) {
         this.defaultName = name;
+    }
+
+    @JsonProperty
+    public String getDefaultWaitTimeout() {
+        return defaultWaitTimeout;
+    }
+
+    @JsonProperty
+    public void setDefaultNameWaitTimeout(String newDefaultWaitTimeout) {
+        this.defaultWaitTimeout = newDefaultWaitTimeout;
     }
 }
