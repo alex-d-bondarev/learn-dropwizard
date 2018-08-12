@@ -1,5 +1,7 @@
 ## LearnDW
 
+Travis: [![Build Status](https://travis-ci.org/alex-d-bondarev/learn-drop-wizard.svg?branch=master)](https://travis-ci.org/alex-d-bondarev/learn-drop-wizard)
+
 
 ### Running LearnDW
 

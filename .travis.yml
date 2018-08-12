@@ -6,6 +6,10 @@ sudo: false
 services:
   - docker
 
+env:
+  global:
+    - COMMIT=${TRAVIS_COMMIT::8}
+
 cache:
   directories:
     - $HOME/.m2
@@ -16,5 +20,9 @@ script: mvn clean install
 
 after_success:
   - docker login -e="$DOCKER_EMAIL" -u="$DOCKER_USERNAME" -p="$DOCKER_PASSWORD"
-  - docker image build -t learn-drop-wizard .
-  - docker push alexdbondarev/learn-drop-wizard:travis_latest
+  - export REPO=alexdbondarev/learn-drop-wizard
+  - export TAG=`if [ "$TRAVIS_BRANCH" == "master" ]; then echo "latest"; else echo $TRAVIS_BRANCH ; fi`
+  - docker build -f Dockerfile -t $REPO:$COMMIT .
+  - docker tag $REPO:$COMMIT $REPO:$TAG
+  - docker tag $REPO:$COMMIT $REPO:travis-$TRAVIS_BUILD_NUMBER
+  - docker push $REPO
