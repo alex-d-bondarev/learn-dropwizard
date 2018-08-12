@@ -15,4 +15,10 @@ public class SayingTest {
         Saying testSaying = new Saying(11, "test");
         Assert.assertEquals("test", testSaying.getContent());
     }
+
+    @Test
+    public void testSayingConstructor(){
+        Saying testSaying = new Saying();
+        Assert.assertNull(testSaying.getContent());
+    }
 }
