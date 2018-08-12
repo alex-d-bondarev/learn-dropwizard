@@ -4,6 +4,7 @@ import java.io.*;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.Optional;
+import java.util.Properties;
 
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
@@ -23,12 +24,13 @@ import org.jsoup.nodes.Element;
  */
 public class JacocoCoverage {
 
+    // TODO: Read from String args[]
+    private Optional<String> totalCoverage;
+
     private String buildPropertiesPath = "./build.properties";
-    private String buildPropertiesTemplate = "jacoco.test.instruction=%.2f";
+    private String propertyName = "jacoco.test.instruction";
     private String pathToJacocoHTML = "./target/jacoco-ut/index.html";
     private String totalCoverageTagCSSSelector = "tfoot > tr:first-child > td:first-child + td + td";
-
-    private Optional<String> totalCoverage;
 
     public static void main(String args[]) {
        JacocoCoverage jc = new JacocoCoverage();
@@ -36,49 +38,40 @@ public class JacocoCoverage {
     }
 
     private void run(){
-        totalCoverage = getTotalCoverage();
-        totalCoverage.ifPresent(this::saveNewProperty);
+        totalCoverage = getCoverageFromJacocoHTML(totalCoverageTagCSSSelector, pathToJacocoHTML);
+        totalCoverage.ifPresent(coverage -> saveNewCoverageTo(coverage ,buildPropertiesPath));
     }
 
-    private void saveNewProperty(String total){
-        String newProperty = prepareCoverageValue(total);
+    private void saveNewCoverageTo(String coverage, String filePath){
+        Properties props = new Properties();
+        props.setProperty(propertyName, parseCoverageValue(coverage));
 
         try {
-            FileOutputStream out = new FileOutputStream(buildPropertiesPath);
-            out.write(newProperty.getBytes());
+            FileOutputStream out = new FileOutputStream(filePath);
+            props.store(out, "Build test coverage");
             out.close();
         }
         catch (IOException ex){
-            System.out.println("Failed to save new property to " + buildPropertiesPath);
+            System.out.println("Failed to save new property to " + filePath);
             ex.printStackTrace();
         }
     }
 
-    private double convertCoverage(String totalCoverage){
+    private String parseCoverageValue(String totalCoverage){
         String onlyDigits = totalCoverage.replace("%", "");
-        return Double.parseDouble(onlyDigits) / 100;
+        return  String.valueOf(
+                Double.parseDouble(onlyDigits) / 100);
     }
 
-    private String generateNewProperty(double coverage){
-        return String.format(buildPropertiesTemplate, coverage);
-    }
-
-    private String prepareCoverageValue(String totalCoverage){
-        String onlyDigits = totalCoverage.replace("%", "");
-        double coverage = Double.parseDouble(onlyDigits) / 100;
-        return String.format(buildPropertiesTemplate, coverage);
-    }
-
-    private Optional<String> getTotalCoverage(){
+    private Optional<String> getCoverageFromJacocoHTML(String cssSelector, String jacocoHTML){
         try{
-            String html = new String(Files.readAllBytes(Paths.get(pathToJacocoHTML)));
+            String html = new String(Files.readAllBytes(Paths.get(jacocoHTML)));
             Document doc = Jsoup.parse(html);
-            Element tdWithTotal = doc.body().select(totalCoverageTagCSSSelector).first();
+            Element tdWithTotal = doc.body().select(cssSelector).first();
             return Optional.of(tdWithTotal.text());
-
         }
         catch(IOException ex) {
-            System.out.println("Failed to open " + pathToJacocoHTML);
+            System.out.println("Failed to open " + jacocoHTML);
             ex.printStackTrace();
         }
         return Optional.empty();
