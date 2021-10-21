@@ -6,6 +6,7 @@ default:
 	@echo "jacoco_dump \t\t # Dump the collected jacoco coverage from the running java service"
 	@echo "jacoco_report \t\t # Create HTML report based on dumped jacoco coverage"
 	@echo "jacoco_combined_report \t # Combine jacoco reports from unit tests and running application"
+	@echo "jacoco_all \t\t # Run all 3 previous jacoco steps"
 
 start_service:
 	@echo "Starting java service with jacoco agent"
@@ -25,3 +26,5 @@ jacoco_combined_report:
 	java -jar ./jacoco/jacococli.jar merge ./target/jacoco.exec ./target/jacoco-m/jacoco-m.exec --destfile ./target/jacoco-c/jacoco-c.exec
 	@echo "Create HTML report"
 	java -jar ./jacoco/jacococli.jar report ./target/jacoco-c/jacoco-c.exec --classfiles ./target/classes/com --sourcefiles ./src/main/java/com --html ./target/jacoco-c
+
+jacoco_all: jacoco_dump jacoco_report jacoco_combined_report

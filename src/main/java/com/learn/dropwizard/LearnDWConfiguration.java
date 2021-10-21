@@ -41,7 +41,7 @@ public class LearnDWConfiguration extends Configuration {
     }
 
     @JsonProperty
-    public void setDefaultNameWaitTimeout(String newDefaultWaitTimeout) {
+    public void setDefaultWaitTimeout(String newDefaultWaitTimeout) {
         this.defaultWaitTimeout = newDefaultWaitTimeout;
     }
 }

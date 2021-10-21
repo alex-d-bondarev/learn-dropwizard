@@ -2,17 +2,15 @@
 
 You can copy and reuse code [![MIT License](http://img.shields.io/badge/license-MIT-green.svg)](https://github.com/selenide/selenide/blob/master/LICENSE)
 
-Travis: [![Build Status](https://travis-ci.org/alex-d-bondarev/learn-drop-wizard.svg?branch=master)](https://travis-ci.org/alex-d-bondarev/learn-drop-wizard)
-
-
 ### Running LearnDW
-
 
 #### How to start the LearnDW application from terminal
 
 1. Run `mvn clean install` to build application
-1. Start application with `java -jar target/com-learn-dropwizard-1.0-SNAPSHOT.jar server config.yml`
-1. To check that application is running navigate to url `http://localhost:8080`
+2. Start application via one of:
+   1. `java -jar target/com-learn-dropwizard-1.0-SNAPSHOT.jar server config.yml`
+   2. `make start_service`
+3. To check that application is running navigate to url `http://localhost:8080`
 
 #### How to start the LearnDW application from IDE
 
@@ -36,15 +34,28 @@ Travis: [![Build Status](https://travis-ci.org/alex-d-bondarev/learn-drop-wizard
 #### How to run via docker-compose
 
 1. Download Docker from https://www.docker.com/get-docker
-1. Install Docker
-1. Run `docker-compose up` to run LearnDW in Docker
-1. Click `^C` to stop LearnDW in Docker
+2. Install Docker
+3. Run `docker-compose up` to run LearnDW in Docker
+4. Click `^C` to stop LearnDW in Docker
+
+### Check test coverage
+[Slides](https://docs.google.com/presentation/d/1Zsc9JwJCcVhzOGQQs5BQclYFNcG5IpiesV1BGS5WFQs/edit?usp=sharing)
+1. Build the project `mvn clean install`
+2. Start the service `make start_service`
+3. Send request to several endpoints, like:
+   1. [Hello, Stranger](http://localhost:8080/hello-world)
+   2. [Hello, Handsome](http://localhost:8080/hello-world?name=Handsome)
+4. In separate terminal run `make jacoco_all`
+5. Check jacoco reports:
+   1. [Unit tests coverage](./target/jacoco-ut/index.html)
+   2. [Manual tests coverage](./target/jacoco-m/index.html)
+   2. [Combined coverage](./target/jacoco-c/index.html)
 
 ### LearnDW features
 
 #### Health Check
 
-To see your applications health enter url `http://localhost:8081/healthcheck`
+To see your applications' health enter url `http://localhost:8081/healthcheck`
 
 #### Endpoints
 
