@@ -43,8 +43,8 @@ You can copy and reuse code [![MIT License](http://img.shields.io/badge/license-
 1. Build the project `mvn clean install`
 2. Start the service `make start_service`
 3. Send request to several endpoints, like:
-   1. [Hello, Stranger](http://localhost:8080/hello-world)
-   2. [Hello, Handsome](http://localhost:8080/hello-world?name=Handsome)
+   1. [Hello, Stranger!](http://localhost:8080/hello-world)
+   2. [Hello, Handsome!](http://localhost:8080/hello-world?name=Handsome)
 4. In separate terminal run `make jacoco_all`
 5. Check jacoco reports:
    1. [Unit tests coverage](./target/jacoco-ut/index.html)
